@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¡Estás invitado!</title>
+
+  <!-- Open Graph para vista previa en WhatsApp -->
+  <meta property="og:title" content="¡Estás invitado!">
+  <meta property="og:description" content="Confirma tu asistencia y mira la ubicación.">
+  <meta property="og:image" content="https://danteagv.github.io/invitacion_isabela/preview2.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://danteagv.github.io/invitacion_isabela/?v=2">
+  <meta property="og:type" content="website">
+
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-O8C/xJh2l5gFv1z2k0w0Hjv5Q6Jyz9K6WyH3eI/rxQF0ltNfrHIU7D5zZQ5YDBXpa/cVjZOD7xph7kzzmqA+QA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      color: #fff;
+      background: none; 
+    }
+
+    /* Video de fondo */
+    #bg-video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      background: #F8D478;
+    }
+
+    /* Contenedor de botones */
+    .buttons {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 2;
+    }
+
+    .buttons a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 22px 45px;
+      color: white;
+      text-decoration: none;
+      font-size: 32px;
+      font-weight: 600;
+      border-radius: 22px;
+      box-shadow: 0 7px 27px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .buttons a:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-icon {
+      width: 58px;
+      height: 58px;
+    }
+
+    .whatsapp-btn {
+      background-color: #25D366;
+      margin-left: 15px;
+    }
+
+    .location-btn {
+      background-color: orange;
+      margin-right: 15px;
+    }
+
+    /* Botón de audio */
+    .audio-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 3;
+      background-color: rgba(0,0,0,0.5);
+      color: #fff;
+      padding: 10px 15px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .audio-btn i {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Video de fondo (mute por defecto para que se vea automáticamente) -->
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+
+  <!-- Botón de audio interactivo -->
+  <div class="audio-btn" onclick="toggleAudio()">
+    <i class="fas fa-volume-xmark"></i>
+    <span>Activar sonido</span>
+  </div>
+
+  <!-- Botones -->
+  <div class="buttons">
+    <a href="https://wa.me/5217771930619" target="_blank" class="whatsapp-btn">
+      <img src="whatsapp.png" alt="WhatsApp" class="btn-icon"> Confirmar asistencia
+    </a>
+    <a href="https://maps.app.goo.gl/aSfyKK3FAMnZnNXY9" target="_blank" class="location-btn">
+      <img src="location.png" alt="Ubicación" class="btn-icon"> Ubicación
+    </a>
+  </div>
+
+  <script>
+    const video = document.getElementById('bg-video');
+    const audioBtn = document.querySelector('.audio-btn');
+    const audioIcon = audioBtn.querySelector('i');
+    const audioText = audioBtn.querySelector('span');
+
+    function toggleAudio() {
+      if (video.muted) {
+        video.muted = false;
+        video.volume = 1;
+        audioIcon.classList.remove('fa-volume-xmark');
+        audioIcon.classList.add('fa-volume-high');
+        audioText.textContent = 'Desactivar sonido';
+      } else {
+        video.muted = true;
+        audioIcon.classList.remove('fa-volume-high');
+        audioIcon.classList.add('fa-volume-xmark');
+        audioText.textContent = 'Activar sonido';
+      }
+    }
+  </script>
+
+</body>
+</html>
