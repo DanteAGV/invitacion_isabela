@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¡Estás invitado!</title>
+
+  <!-- Open Graph para vista previa en WhatsApp -->
+  <meta property="og:title" content="¡Estás invitado!">
+  <meta property="og:description" content="Confirma tu asistencia y mira la ubicación.">
+  <meta property="og:image" content="https://danteagv.github.io/invitacion_isabela/preview2.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://danteagv.github.io/invitacion_isabela/?v=2">
+  <meta property="og:type" content="website">
+
+  <!-- Fuente -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      color: #fff;
+      background: none; 
+    }
+
+    /* Video de fondo */
+    #bg-video {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      background: #F8D478;
+    }
+
+    /* Contenedor de botones */
+    .buttons {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 2;
+    }
+
+    .buttons a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 22px 45px; /* restaurado */
+      color: white;
+      text-decoration: none;
+      font-size: 32px; /* restaurado */
+      font-weight: 600;
+      border-radius: 22px; /* restaurado */
+      box-shadow: 0 7px 27px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .buttons a:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-icon {
+      width: 58px;  /* restaurado */
+      height: 58px;
+    }
+
+    .whatsapp-btn {
+      background-color: #25D366;
+      margin-left: 15px;
+    }
+
+    .location-btn {
+      background-color: orange;
+      margin-right: 15px;
+    }
+
+    /* Botón de audio (50% más grande) */
+    .audio-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0,0,0,0.6);
+      padding: 15px 24px;
+      border-radius: 18px;
+      cursor: pointer;
+      font-size: 36px;
+      z-index: 3;
+    }
+
+    .audio-btn span {
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Video de fondo -->
+  <video id="bg-video" autoplay loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+  </video>
+
+  <!-- Botón de audio -->
+  <div class="audio-btn" onclick="toggleAudio()">
+    <span id="audio-icon">🔇</span>
+    <span id="audio-text">Activar sonido</span>
+  </div>
+
+  <!-- Botones -->
+  <div class="buttons">
+    <a href="https://wa.me/5217771930619" target="_blank" class="whatsapp-btn">
+      <img src="whatsapp.png" alt="WhatsApp" class="btn-icon"> Confirmar asistencia
+    </a>
+    <a href="https://maps.app.goo.gl/aSfyKK3FAMnZnNXY9" target="_blank" class="location-btn">
+      <img src="location.png" alt="Ubicación" class="btn-icon"> Ubicación
+    </a>
+  </div>
+
+  <script>
+    const video = document.getElementById('bg-video');
+    const icon = document.getElementById('audio-icon');
+    const text = document.getElementById('audio-text');
+
+    video.muted = true; // iniciar silenciado
+
+    function toggleAudio() {
+      if(video.muted){
+        video.muted = false;
+        video.play(); // reproducir audio al activar
+        icon.innerText = '🔊';
+        text.innerText = 'Desactivar sonido';
+      } else {
+        video.muted = true;
+        icon.innerText = '🔇';
+        text.innerText = 'Activar sonido';
+      }
+    }
+  </script>
+
+</body>
+</html>
